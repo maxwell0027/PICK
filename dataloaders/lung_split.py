@@ -8,7 +8,7 @@ import io_
 from io_ import *
 import nibabel as nib
 
-img_root = '/data/userdisk1/qjzeng/semi_seg/BCP-main/code/data/img/'
+img_root = '/data/userdisk1/qjzeng/semi_seg/code/data/img/'
 
 img_path = os.listdir(img_root)
 
