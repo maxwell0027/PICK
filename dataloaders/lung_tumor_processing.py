@@ -9,12 +9,12 @@ from io_ import *
 import nibabel as nib
 
 output_size =[96, 96, 96]
-img_root = '/data/userdisk1/qjzeng/semi_seg/BCP-main/code/data_lung/img/'
-lab_root = '/data/userdisk1/qjzeng/semi_seg/BCP-main/code/data_lung/lab/'
-save_reimg_root = '/data/userdisk1/qjzeng/semi_seg/BCP-main/code/data_lung/img_respacing/'
-save_relab_root = '/data/userdisk1/qjzeng/semi_seg/BCP-main/code/data_lung/lab_respacing/'
+img_root = '/data/userdisk1/qjzeng/semi_seg/code/data_lung/img/'
+lab_root = '/data/userdisk1/qjzeng/semi_seg/code/data_lung/lab/'
+save_reimg_root = '/data/userdisk1/qjzeng/semi_seg/code/data_lung/img_respacing/'
+save_relab_root = '/data/userdisk1/qjzeng/semi_seg/code/data_lung/lab_respacing/'
 
-save_h5_root = '/data/userdisk1/qjzeng/semi_seg/BCP-main/code/data_lung/lung_h5/'
+save_h5_root = '/data/userdisk1/qjzeng/semi_seg/code/data_lung/lung_h5/'
 
 img_path = os.listdir(img_root)
 lab_path = os.listdir(lab_root)
