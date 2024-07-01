@@ -359,14 +359,6 @@ def self_train(args, pre_snapshot_path, self_snapshot_path):
     load_net(model, pretrained_model)
     
     
-    load_net(model, '/data/userdisk1/qjzeng/semi_seg/IJCAI24/weight/LA_IJCAI_16_labeled_0.2/self_train/VNet_best_model.pth')
-    #load_net(ema_model, '/data/userdisk1/qjzeng/semi_seg/IJCAI24/weight/LA_IJCAI_16_labeled_0.2/pre_train/VNet_best_model.pth')
-    maxdice1 = 0.
-    print(time.localtime(time.time()))
-    val_dice, maxdice1, max_flag = test(model, model, test_loader, maxdice1, stride_xy=18, stride_z=4)
-    print(time.localtime(time.time()))
-    exit()
-    
     model.train()
     writer = SummaryWriter(self_snapshot_path+'/log')
     logging.info("{} itertations per epoch".format(len(trainloader)))
