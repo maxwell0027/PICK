@@ -30,8 +30,8 @@ from networks.net_factory import net_factory
 from utils.BCP_utils import context_mask, mix_loss, parameter_sharing, update_ema_variables
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--root_path', type=str, default='/data/userdisk1/qjzeng/semi_seg/FUSSNet-main/preprocess/', help='Name of Dataset')
-parser.add_argument('--exp', type=str,  default='IJCAI', help='exp_name')
+parser.add_argument('--root_path', type=str, default='/data/userdisk1/qjzeng/semi_seg/preprocess/', help='Name of Dataset')
+parser.add_argument('--exp', type=str,  default='exp', help='exp_name')
 parser.add_argument('--model', type=str, default='VNet', help='model_name')
 parser.add_argument('--pre_max_iteration', type=int,  default=5000, help='maximum pre-train iteration to train')
 parser.add_argument('--self_max_iteration', type=int,  default=15000, help='maximum self-train iteration to train')
@@ -188,15 +188,6 @@ def pre_train(args, snapshot_path):
     max_epoch = pre_max_iterations // len(trainloader) + 1
     iterator = tqdm(range(max_epoch), ncols=70)
 
-    '''
-    load_net_opt(model, optimizer, '/data/userdisk1/qjzeng/semi_seg/BCP-main/code/model/BCP/Spleen_BCP_3_labeled/pre_train/iter_1800_dice_0.pth')
-    save_h5_root = '/data/userdisk1/qjzeng/semi_seg/BCP-main/code/data_btcv/spleen_h5/'
-    image_list = os.listdir(save_h5_root)
-    image_list = [save_h5_root+item for item in image_list]
-    val_dice, maxdice1, max_flag = test(model, model, image_list, maxdice1, stride_xy=64, stride_z=16)
-    exit()
-    '''
-    #val_dice, maxdice1, max_flag = test(model, model, test_loader, maxdice1)
     
     
     for epoch_num in iterator:
@@ -363,9 +354,6 @@ def self_train(args, pre_snapshot_path, self_snapshot_path):
     pretrained_model = os.path.join(pre_snapshot_path, f'{args.model}_best_model.pth')
     load_net(model, pretrained_model)    
     
-    #load_net(model, '/data/userdisk1/qjzeng/semi_seg/IJCAI24/weight/PA_IJCAI_12_labeled_1.0/self_train/VNet_best_model.pth')
-    #load_net(ema_model, '/data/userdisk1/qjzeng/semi_seg/IJCAI24/weight/Lung_IJCAI_15_labeled/pre_train/VNet_best_model.pth')
-    
     model.train()
     writer = SummaryWriter(self_snapshot_path+'/log')
     logging.info("{} itertations per epoch".format(len(trainloader)))
@@ -375,12 +363,6 @@ def self_train(args, pre_snapshot_path, self_snapshot_path):
     max_epoch = self_max_iterations // len(trainloader) + 1
     lr_ = base_lr
     iterator = tqdm(range(max_epoch), ncols=70)
-    
-    
-    #val_dice, maxdice1, max_flag = test(model, model, test_loader, maxdice1, stride_xy=16, stride_z=4, main=True)
-    #val_dice, maxdice1, max_flag = test(model, model, test_loader, maxdice1, stride_xy=16, stride_z=4, main=False)
-    
-    #exit()
     
     
     for epoch in iterator:
