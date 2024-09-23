@@ -119,46 +119,6 @@ def test_single_case(net, ema_net, image, stride_xy, stride_z, patch_size, label
                 y = y.cpu().data.numpy()
                 y = y[0, :, :, :, :]
                 
-                #for item_ in feat:
-                #    print(item_.shape)
-                #print(feat[0].shape)
-                feat1 = torch.mean(feat[0], dim=1).detach().cpu().data.numpy()
-                feat_de1 = torch.mean(feat_de, dim=1).detach().cpu().data.numpy()
-                #print(feat1.shape)
-                feat1 = feat1[0,:,:,60]
-                feat_de1 = feat_de1[0,:,:,30]
-                image1 = test_patch[0,0,:,:,60].detach().cpu().data.numpy()
-                label1 = label_patch[:,:,60]
-                plt.imshow(feat1)
-                plt.xticks([])
-                plt.yticks([])
-                plt.savefig('ori_.png', dpi=300)
-                plt.show()
-                
-                
-                plt.imshow(feat_de1)
-                plt.xticks([])
-                plt.yticks([])
-                plt.savefig('ours_.png', dpi=300)
-                plt.show()
-                
-                
-                
-                plt.imshow(image1, cmap='gray')
-                plt.xticks([])
-                plt.yticks([])
-                plt.savefig('img_.png', dpi=300)
-                plt.show()
-                
-                
-                
-                plt.imshow(label1, cmap='gray')
-                plt.xticks([])
-                plt.yticks([])
-                plt.savefig('lab_.png', dpi=300)
-                plt.show()
-                exit()
-                
 
                 '''
                 y1 = net(test_patch)[0]
